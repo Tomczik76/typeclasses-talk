@@ -1,0 +1,32 @@
+*.class
+*.log
+
+# sbt specific
+.cache
+.history
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+
+.vscode
+.bloop
+.metals
+.idea/
+.DS_STORE
+metastore_db
+derby.log
+
+.bigquery
+
+data/
+
+deploy_local.sh
+run_it_test.sh
