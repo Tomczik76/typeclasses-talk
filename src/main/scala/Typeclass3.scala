@@ -1,4 +1,3 @@
-import Typeclass1.allEqual
 import simulacrum.{op, typeclass}
 
 object Typeclass3 {
