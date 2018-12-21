@@ -6,6 +6,8 @@ object Typeclass3 {
     @op("===") def eq(a: A, b: A): Boolean
   }
 
+  class Foo(val a: Int, val b: String)
+
   object Instances {
     implicit val eqInt = new Eq[Int] {
       override def eq(a: Int, b: Int): Boolean = a == b
@@ -30,8 +32,9 @@ object Typeclass3 {
     case head :: tail => tail.forall(a => F.eq(a, head))
   }
 
-  def allEqualSyntax[A: Eq](xs: List[A]): Boolean = xs match {
-    case Nil => true
-    case head :: tail => tail.forall(a => a === head)
-  }
+  def allEqualSyntax[A: Eq](xs: List[A]): Boolean =
+    xs match {
+      case Nil => true
+      case head :: tail => tail.forall(a => a === head)
+    }
 }

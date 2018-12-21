@@ -4,6 +4,8 @@ object Typeclass1 {
     def eq(a: A, b: A): Boolean
   }
 
+  class Foo(val a: Int, val b: String)
+
   object Instances {
     implicit val eqInt = new Eq[Int] {
       def eq(a: Int, b: Int): Boolean = a == b
@@ -22,10 +24,9 @@ object Typeclass1 {
     assert(allEqual(List(new Foo(1, "bar"), new Foo(1, "bar"))))
   }
 
-  def allEqual[A: Eq](xs: List[A])(implicit F: Eq[A]): Boolean = xs match {
-    case Nil => true
-    case head :: tail => tail.forall(a => F.eq(a, head))
-  }
+  def allEqual[A: Eq](xs: List[A])(implicit F: Eq[A]): Boolean =
+    xs match {
+      case Nil => true
+      case head :: tail => tail.forall(a => F.eq(a, head))
+    }
 }
-
-class Foo(val a: Int, val b: String)

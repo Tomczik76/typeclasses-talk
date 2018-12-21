@@ -4,9 +4,11 @@ object Typeclass2 {
     def eq(a: A, b: A): Boolean
   }
 
+  class Foo(val a: Int, val b: String)
+
   object Syntax {
     implicit class EqOps[A: Eq](a: A)(implicit F: Eq[A]) {
-      def ===(b: A): Boolean = F.eq(a, b)
+      def === (b: A): Boolean = F.eq(a, b)
     }
   }
 
@@ -34,8 +36,9 @@ object Typeclass2 {
     case head :: tail => tail.forall(a => F.eq(a, head))
   }
 
-  def allEqualSyntax[A: Eq](xs: List[A]): Boolean = xs match {
-    case Nil => true
-    case head :: tail => tail.forall(a => a === head)
-  }
+  def allEqualSyntax[A: Eq](xs: List[A]): Boolean =
+    xs match {
+      case Nil => true
+      case head :: tail => tail.forall(a => a === head)
+    }
 }
